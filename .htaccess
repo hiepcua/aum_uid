@@ -1,0 +1,52 @@
+RewriteEngine On
+RewriteRule ^admin/?$ 							sys/index.php
+#-------------------------------------------------------------------------------------------
+RewriteRule ^members/?$ 						index.php?com=members  [QSA]
+RewriteRule ^register/?$ 						index.php?com=members&viewtype=m-register  [QSA]
+RewriteRule ^r-success/?$ 						index.php?com=members&viewtype=m-regist-success  [QSA]
+RewriteRule ^forgot-password/?$ 				index.php?com=members&viewtype=m-forgotpass
+
+RewriteRule ^account/?$ 						index.php?com=members&viewtype=dashboard
+RewriteRule ^account/changepass?$ 				index.php?com=members&viewtype=change_pass
+RewriteRule ^account/avatar?$ 					index.php?com=members&viewtype=avatar
+RewriteRule ^myteam/?$ 							index.php?com=members&viewtype=myteam
+
+RewriteRule ^send/?$ 							index.php?com=wallet&viewtype=send
+RewriteRule ^receive/?$ 						index.php?com=wallet&viewtype=receive
+RewriteRule ^buy/?$ 							index.php?com=wallet&viewtype=buy
+RewriteRule ^payment/?$ 						index.php?com=wallet&viewtype=payment
+
+RewriteRule ^p-wallet/?$ 						index.php?com=wallet&viewtype=wallet-p
+RewriteRule ^s-wallet/?$ 						index.php?com=wallet&viewtype=wallet-s
+RewriteRule ^b-wallet/?$ 						index.php?com=wallet&viewtype=wallet-b
+
+RewriteRule ^dashboard/?$ 						index.php?com=members&viewtype=dashboard
+RewriteRule ^avatar/?$	 						index.php?com=members&viewtype=avatar
+RewriteRule ^profile/?$	 						index.php?com=members&viewtype=profile
+RewriteRule ^pass/?$	 			 			index.php?com=members&viewtype=change_pass
+#------------------------------------------------------------------------------------------
+RewriteRule ^verifyAccount-(.*)/?$ 				ajaxs/mem/verifyAccount.php?user=$1
+#-------------------------------------------------------------------------------------------
+RewriteRule ^api/member/regis?$					api/mem/process_register.php
+RewriteRule ^api/member/login?$					api/mem/process_login.php
+RewriteRule ^api/member/verifi?$				api/mem/verifyAccount.php
+RewriteRule ^api/member/change-pass?$			api/mem/process_changepass.php
+RewriteRule ^api/member/losepasss?$				api/mem/process_losepass.php
+RewriteRule ^api/member/lose2fa?$				api/mem/process_lose2fa.php
+
+RewriteRule ^api/paymentQR?$					api/pit/payment_qrcode.php
+RewriteRule ^api/PitBalance?$					api/pit/getBalance.php
+RewriteRule ^api/WalletBalance?$				api/wallet/getBalance.php
+
+RewriteRule ^api/PitHistories?$					api/pit/getHistories.php
+RewriteRule ^api/WalletHistories?$				api/wallet/getHistories.php
+RewriteRule ^api/Active2FA?$					api/mem/process_active_2fa.php
+RewriteRule ^api/GoogleAuthenUrl?$				api/mem/get_url_2fa.php
+RewriteRule ^api/KYC?$							api/mem/uploadKYC.php
+
+RewriteRule ^api/ActiveWallet?$					api/pit/createWallet.php
+
+#------------------------------------------------------------------------------------------
+
+RewriteRule ^phongban/?$ 						index.php?com=phongban
+RewriteRule ^chucvu/?$ 							index.php?com=chucvu
