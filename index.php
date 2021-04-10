@@ -55,30 +55,58 @@ $_VIEW=isset($_GET['viewtype'])?addslashes(strip_tags($_GET['viewtype'])):'';
 	<link rel="stylesheet" type="text/css" href="<?php echo ROOTHOST;?>css/style.responsive.min.css"/>
 	<script src='<?php echo ROOTHOST;?>global/js/jquery-1.11.2.min.js'></script>
 	<script src="<?php echo ROOTHOST;?>global/js/bootstrap.min.js"></script>
+	<script src="<?php echo ROOTHOST;?>js/func.js"></script>
 </head>
 <body id="wapper_body" class="wapper_body">
-<?php if(isLogin()){ ?>
-<div id="notification" style="display: none;"></div>
-<div id='site_header'><?php require_once('modules/site-header.php');?><div class="clearfix"></div></div>
-<?php } ?>
-<div id='wapper' class="body">
-<?php
-	$com=isset($_GET['com'])? addslashes($_GET['com']):'frontpage';
-	$viewtype=isset($_GET['viewtype'])? addslashes($_GET['viewtype']):'';
-	include(COM_PATH.'com_'.$com.'/layout.php');
-?>
-</div>
-<?php if(isLogin()){ ?>
-<div id='site-footer'><?php //require_once('modules/site-footer.php');?></div>
-<div class="modal fade" id='myModal' role="dialog">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-body" id="data-frm">
-				<p>One fine body&hellip;</p>
+	<?php if(isLogin()){ ?>
+		<div id="notification" style="display: none;"></div>
+		<div id='site_header'><?php require_once('modules/site-header.php');?><div class="clearfix"></div></div>
+	<?php } ?>
+	<div id='wapper' class="body">
+		<?php
+		$com=isset($_GET['com'])? addslashes($_GET['com']):'frontpage';
+		$viewtype=isset($_GET['viewtype'])? addslashes($_GET['viewtype']):'';
+		include(COM_PATH.'com_'.$com.'/layout.php');
+		?>
+	</div>
+	<?php if(isLogin()){ ?>
+		<div id='site-footer'><?php //require_once('modules/site-footer.php');?></div>
+		<div class="modal fade" id='myModal' role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title"></h4>
+					</div>
+					<div class="modal-body" id="data-frm">
+						<p>One fine body&hellip;</p>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+
+		<div id="myModalPopup" class="modal fade" role="dialog">
+			<div class="modal-dialog">
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title"></h4>
+					</div>
+					<div class="modal-body"></div>
+				</div>
 			</div>
-		</div><!-- /.modal-content -->
-	</div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-<?php }?>
+		</div>
+		<div class="loading"></div>
+	<?php }?>
 </body>
 </html>
+<script type="text/javascript">
+	//show/hide loading
+	function showLoading() {
+		$(".loading").show();
+	}
+	function hideLoading() {
+		$(".loading").hide();
+	}
+</script>

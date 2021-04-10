@@ -34,18 +34,8 @@ RewriteRule ^api/member/change-pass?$			api/mem/process_changepass.php
 RewriteRule ^api/member/losepasss?$				api/mem/process_losepass.php
 RewriteRule ^api/member/lose2fa?$				api/mem/process_lose2fa.php
 
-RewriteRule ^api/paymentQR?$					api/pit/payment_qrcode.php
-RewriteRule ^api/PitBalance?$					api/pit/getBalance.php
-RewriteRule ^api/WalletBalance?$				api/wallet/getBalance.php
-
-RewriteRule ^api/PitHistories?$					api/pit/getHistories.php
-RewriteRule ^api/WalletHistories?$				api/wallet/getHistories.php
-RewriteRule ^api/Active2FA?$					api/mem/process_active_2fa.php
-RewriteRule ^api/GoogleAuthenUrl?$				api/mem/get_url_2fa.php
-RewriteRule ^api/KYC?$							api/mem/uploadKYC.php
-
-RewriteRule ^api/ActiveWallet?$					api/pit/createWallet.php
-
+RewriteRule ^api/getUser?$						api/mem/getUser.php  [QSA]
+RewriteRule ^api/getPermiss?$					api/mem/getPermiss.php  [QSA]
 #------------------------------------------------------------------------------------------
 
 RewriteRule ^phongban/?$ 						index.php?com=phongban [QSA]

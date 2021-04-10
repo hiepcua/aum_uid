@@ -1,15 +1,23 @@
 <?php
 if(isLogin()){
 	$username=getInfo('username');
-	$res_phongban = file_get_contents(JSON_HOST."group.php");
-	var_dump($res_phongban);
-
-	$get_name='';
+	$get_name=$strWhere='';
+	$start=$MAX_ROWS=0;
 	$get_q = isset($_GET['q']) ? antiData($_GET['q']) : '';
 
 	if($get_q!==''){
-
+		$strWhere.= " AND `name` LIKE '%".$get_q."%'";
 	}
+
+	/* ---------------------------------------- */
+	$MAX_ROWS = 2;
+	$total_rows = 3;
+	// $total_rows = SysCount('tbl_group', $strWhere);
+	$max_pages = ceil($total_rows/$MAX_ROWS);
+	$cur_page = getCurentPage($max_pages);
+	$start = ($cur_page - 1) * $MAX_ROWS;
+	$limit = ' LIMIT '.$start.','. $MAX_ROWS;
+	$strWhere.= $limit;
 	?>
 	<div class="col-md-12">
 		<h3 class='page-title'>Quản lý phòng ban</h3>
@@ -25,7 +33,7 @@ if(isLogin()){
 						</div>
 					</form>
 					<div class="pull-right">
-						<button type="button" class="btn btn-primary" name="filterDebt" id="btn_add"><i class="fa fa-dollar"></i> Thêm mới</button>
+						<button type="button" class="btn btn-primary" name="filterDebt" onclick="addNew()"><i class="fa fa-dollar"></i> Thêm mới</button>
 					</div>
 				</div>
 			</div>
@@ -51,3 +59,48 @@ if(isLogin()){
 	header('location:'.ROOTHOST);
 }
 ?>
+<script type="text/javascript">
+	$(document).ready(function(){
+		getTable("<?php echo $strWhere;?>", "<?php echo $start;?>", "<?php echo $MAX_ROWS;?>");
+		update();
+
+		$('#btn_add').on('click', function(){
+			addNew();
+		})
+	});
+
+	function getTable(strwhere, start, max_rows){
+		var _url="<?php echo ROOTHOST;?>ajaxs/phongban/get_table.php";
+		var _data={
+			"strwhere": strwhere,
+			"start": start,
+			"max_rows": max_rows,
+		};
+
+		$.get(_url, _data, function(req){
+			$('#data-table').html(req);
+		});
+	}
+
+	function addNew(){
+		var _url="<?php echo ROOTHOST;?>ajaxs/phongban/form_add.php";
+		$.get(_url, function(req){
+			$('#myModalPopup .modal-dialog').addClass('modal-md');
+			$('#myModalPopup .modal-title').html('Thêm phòng ban');
+			$('#myModalPopup .modal-body').html(req);
+			$('#myModalPopup').modal('show');
+		});
+	}
+
+	function update(){
+		// var code = e.getAttribute('data-code');
+		var code = 'vccu-3';
+		var _url="<?php echo ROOTHOST;?>ajaxs/phongban/form_edit.php";
+		$.post(_url, {"code": code}, function(req){
+			$('#myModalPopup .modal-dialog').addClass('modal-md');
+			$('#myModalPopup .modal-title').html('Cập nhật phòng ban');
+			$('#myModalPopup .modal-body').html(req);
+			$('#myModalPopup').modal('show');
+		});
+	}
+</script>
