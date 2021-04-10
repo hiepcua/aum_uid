@@ -1,26 +1,33 @@
 <?php
 if(isLogin()){
 	$username=getInfo('username');
-	$res_phongban = file_get_contents(JSON_HOST."group.json");
-	echo $res_phongban;
+	$res_phongban = file_get_contents(JSON_HOST."group.php");
+	var_dump($res_phongban);
+
+	$get_name='';
+	$get_q = isset($_GET['q']) ? antiData($_GET['q']) : '';
+
+	if($get_q!==''){
+
+	}
 	?>
 	<div class="col-md-12">
-		<div class='page-title'>Quản lý phòng ban</div>
+		<h3 class='page-title'>Quản lý phòng ban</h3>
 		<div class="page-body">
-			<div class="form-group">
-				<form id="frm_search" name="frm_search" method="get" action="">
-					<div class="col-md-4"><div class="row">
-						<input type="hidden" class="form-control" name="com" id="com" value="city">
-						<input type="hidden" class="form-control" name="task" id="task" value="">
-						<input type="text" class="form-control" name="q" id="txt_q" placeholder="Tên tỉnh thành" value="<?php echo $key;?>">
-					</div></div>
-					<div class="col-md-1">
-						<button type="submit" class="btn btn-primary" name="cmdsearch" id="cmdsearch"><i class="fa fa-search"></i> Tìm</button>
-					</div>
-					<div class="col-md-1">
+			<div class="row">
+				<div class="form-group col-md-12">
+					<form id="frm_search" name="frm_search" method="get" action="">
+						<div class="col-md-4"><div class="row">
+							<input type="text" class="form-control" name="q" id="txt_q" placeholder="Tên phòng ban" value="<?php echo $get_q;?>">
+						</div></div>
+						<div class="col-md-1">
+							<button type="submit" class="btn btn-primary" name="cmdsearch" id="cmdsearch"><i class="fa fa-search"></i> Tìm</button>
+						</div>
+					</form>
+					<div class="pull-right">
 						<button type="button" class="btn btn-primary" name="filterDebt" id="btn_add"><i class="fa fa-dollar"></i> Thêm mới</button>
 					</div>
-				</form>
+				</div>
 			</div>
 			<div class="clearfix"></div>
 

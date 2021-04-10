@@ -7,6 +7,7 @@ require_once(incl_path.'gfinit.php');
 require_once(incl_path.'gffunc.php');
 require_once(incl_path.'gffunc_member.php');
 //-----------------------------------------
+require_once(libs_path.'cls.mysql.php');
 require_once(libs_path.'cls.postgre.php');
 require_once(libs_path.'GoogleAuthenticator.php');
 //-----------------------------------------

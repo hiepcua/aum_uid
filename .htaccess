@@ -48,5 +48,5 @@ RewriteRule ^api/ActiveWallet?$					api/pit/createWallet.php
 
 #------------------------------------------------------------------------------------------
 
-RewriteRule ^phongban/?$ 						index.php?com=phongban
-RewriteRule ^chucvu/?$ 							index.php?com=chucvu
+RewriteRule ^phongban/?$ 						index.php?com=phongban [QSA]
+RewriteRule ^chucvu/?$ 							index.php?com=chucvu [QSA]

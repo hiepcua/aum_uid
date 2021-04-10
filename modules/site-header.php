@@ -19,8 +19,8 @@ $username=getInfo('username');
 				<li>
 					<a href=""><i class="fa fa-list" aria-hidden="true"></i> Danh mục</a>
 					<ul class="submenu">
-						<li><a href="<?php echo ROOTHOST;?>">Phòng ban</a></li>
-						<li><a href="<?php echo ROOTHOST;?>">Chức vụ</a></li>
+						<li><a href="<?php echo ROOTHOST;?>phongban">Phòng ban</a></li>
+						<li><a href="<?php echo ROOTHOST;?>chucvu">Chức vụ</a></li>
 						<li><a href="<?php echo ROOTHOST;?>">Quản lý site</a></li>
 					</ul>
 				</li>

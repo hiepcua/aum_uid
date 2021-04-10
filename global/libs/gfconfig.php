@@ -16,7 +16,7 @@ define('MEDIA_HOST',ROOTHOST.'uploads/media/');
 define('IMAGE_HOST',ROOTHOST.'uploads/media/');
 define('AVATAR_DEFAULT',ROOTHOST.'images/avatar/default.jpg');
 define('PIT_API_KEY','6b73412dd2037b6d2ae3b2881b5073bc');
-define('JSON_HOST',$_SERVER['DOCUMENT_ROOT'].'/jsons/');
+define('JSON_HOST',$_SERVER['DOCUMENT_ROOT'].'/edaotao_uid/jsons/');
 // ---------------DEFINE CONSTANT API----------------
 define('APP_ID','1663061363962371');
 define('APP_SECRET','dd0b6d3fb803ca2a51601145a74fd9a8');

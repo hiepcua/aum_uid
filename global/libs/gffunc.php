@@ -1,4 +1,75 @@
 <?php
+function paging($total_rows,$max_rows,$cur_page){
+    $max_pages=ceil($total_rows/$max_rows);
+    $start=$cur_page-5; if($start<1)$start=1;
+    $end=$cur_page+5;   if($end>$max_pages)$end=$max_pages;
+    $paging='
+    <form action="" method="get" name="frmpaging" id="frmpaging">
+    <input type="hidden" name="page" id="txtCurnpage" value="1" />
+    <ul class="pagination">';
+
+    $paging.='<p align="center" class="paging">';
+    $paging.="<strong>Total:</strong> $total_rows <strong>on</strong> $max_pages <strong>page</strong><br>";
+
+    if($cur_page >1)
+        $paging.='<li><a href="javascript:gotopage('.($cur_page-1).')"> << </a></li>';
+    if($max_pages>1){
+        for($i=$start;$i<=$end;$i++)
+        {
+            if($i!=$cur_page)
+                $paging.="<li><a href=\"javascript:gotopage($i)\"> $i </a></li>";
+            else
+                $paging.="<li class='active'><a href=\"#\" class=\"cur_page\"> $i </a></li>";
+        }
+    }
+    if($cur_page <$max_pages)
+        $paging.='<li><a href="javascript:gotopage('.($cur_page+1).')"> » </a></li>';
+
+    $paging.='</ul></p></form>';
+    echo $paging;
+}
+function paging_index($total_rows,$max_rows,$cur_page){
+    $max_pages=ceil($total_rows/$max_rows);
+    $start=$cur_page-5; if($start<1)$start=1;
+    $end=$cur_page+5;   if($end>$max_pages)$end=$max_pages;
+    $paging='
+    <form action="" method="post" name="frmpaging" id="frmpaging">
+    <input type="hidden" name="page" id="txtCurnpage" value="1" />
+    <ul class="pagination">
+    ';
+
+    $paging.='<p align="center" class="paging">';
+    if($cur_page >1)
+        $paging.='<li><a href="javascript:gotopage('.($cur_page-1).')"> << </a></li>';
+    if($max_pages>1){
+        for($i=$start;$i<=$end;$i++)
+        {
+            if($i!=$cur_page)
+                $paging.="<li><a href=\"javascript:gotopage($i)\"> $i </a></li>";
+            else
+                $paging.="<li class='active'><a href=\"#\" class=\"cur_page\"> $i </a></li>";
+        }
+    }
+    if($cur_page <$max_pages)
+        $paging.='<li><a href="javascript:gotopage('.($cur_page+1).')"> » </a></li>';
+
+    $paging.='</ul></p></form>';
+    echo $paging;
+}
+function getCurentPage($max_pages=1){
+    if($max_pages==0) $max_pages=1;
+    $cur_page=isset($_GET['page'])?antiData($_GET['page'],'int'):1;
+    if($cur_page<1)$cur_page=1;
+    if($cur_page>$max_pages) $cur_page=$max_pages;
+    return $cur_page;
+}
+function postCurentPage($max_pages=1){
+    if($max_pages==0) $max_pages=1;
+    $cur_page=isset($_POST['page'])?antiData($_POST['page'],'int'):1;
+    if($cur_page<1)$cur_page=1;
+    if($cur_page>$max_pages) $cur_page=$max_pages;
+    return $cur_page;
+}
 function isMobile(){
 	if(preg_match("/(iPad)/i", $_SERVER["HTTP_USER_AGENT"])) return false;
 	elseif(preg_match("/(iPhone|iPod|android|blackberry|Mobile|Lumia)/i", $_SERVER["HTTP_USER_AGENT"])) return true;
